@@ -15,7 +15,10 @@ app.get("/api/tasks", (req, res) => {
   const { offset = 0, limit = 10 } = req.query;
   const tasks = JSON.parse(fs.readFileSync(fileName));
 
-  const tasksSliced = tasks.slice(offset, offset + limit);
+  const tasksSliced = tasks.slice(
+    Number(offset),
+    Number(offset) + Number(limit)
+  );
 
   res.status(200).send({
     data: tasksSliced,
